@@ -27,7 +27,7 @@ namespace One.Ad.Admob.NativeOverlay
             if (placementTarget == null || canvas == null)
                 return;
 
-            Vector2 adSize = new Vector2(placementTarget.rect.width, placementTarget.rect.height);
+            Vector2 adSize = new Vector2(placementTarget.rect.width * placementTarget.localScale.x, placementTarget.rect.height * placementTarget.localScale.y);
             Debug.Log(adSize);
             Debug.Log(adSize * DpPerPixel);
             Vector2 adPos = (canvas.renderMode == RenderMode.ScreenSpaceOverlay) ?
@@ -45,7 +45,7 @@ namespace One.Ad.Admob.NativeOverlay
 
         public static AdSize AdSize(RectTransform rt)
         {
-            return new AdSize((int)rt.rect.width, (int)rt.rect.height);
+            return new AdSize((int)(rt.rect.width * rt.localScale.x), (int)(rt.rect.height * rt.localScale.y));
         }
 
         public static Vector2Int AdPosition(RectTransform rt, Canvas canvas)
